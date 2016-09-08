@@ -18,6 +18,7 @@
 #   XCB_RANDR_FOUND      XCB_RANDR_INCLUDE_DIR      XCB_RANDR_LIBRARY
 #   XCB_SHAPE_FOUND      XCB_SHAPE_INCLUDE_DIR      XCB_SHAPE_LIBRARY
 #   XCB_DRI2_FOUND       XCB_DRI2_INCLUDE_DIR       XCB_DRI2_LIBRARY
+#   XCB_DRI3_FOUND       XCB_DRI3_INCLUDE_DIR       XCB_DRI3_LIBRARY
 #   XCB_GLX_FOUND        XCB_GLX_INCLUDE_DIR        XCB_GLX_LIBRARY
 #   XCB_SHM_FOUND        XCB_SHM_INCLUDE_DIR        XCB_SHM_LIBRARY
 #   XCB_XV_FOUND         XCB_XV_INCLUDE_DIR         XCB_XV_LIBRARY
@@ -39,6 +40,7 @@ set(knownComponents XCB
                     COMPOSITE
                     DAMAGE
                     DRI2
+                    DRI3
                     EWMH
                     GLX
                     ICCCM
@@ -82,6 +84,8 @@ foreach(comp ${comps})
             list(APPEND pkgConfigModules "xcb-damage")
         elseif("${comp}" STREQUAL "DRI2")
             list(APPEND pkgConfigModules "xcb-dri2")
+        elseif("${comp}" STREQUAL "DRI3")
+            list(APPEND pkgConfigModules "xcb-dri3")
         elseif("${comp}" STREQUAL "EWMH")
             list(APPEND pkgConfigModules "xcb-ewmh")
         elseif("${comp}" STREQUAL "GLX")
@@ -145,6 +149,9 @@ macro(_XCB_HANDLE_COMPONENT _comp)
     elseif("${_comp}" STREQUAL "DRI2")
         set(_header "xcb/dri2.h")
         set(_lib "xcb-dri2")
+    elseif("${_comp}" STREQUAL "DRI3")
+        set(_header "xcb/dri3.h")
+        set(_lib "xcb-dri3")
     elseif("${_comp}" STREQUAL "EWMH")
         set(_header "xcb/xcb_ewmh.h")
         set(_lib "xcb-ewmh")
